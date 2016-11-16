@@ -2,79 +2,209 @@
 <html lang="en">
 <head>
 <title>Welcome to a Webpage</title>
-<script>
-    function important()
-    {
-        delayer();
-    }
-    window.onload = important;
-</script>
-<script>
-    function sleep(milliseconds) {
-      var start = new Date().getTime();
-      for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds){
-          break;
-        }
-      }
-    }
-    function delayer() {
-        sleep(7000);
-    }
-</script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style media="screen" type="text/css">
-.header {
-    background-color: #f0f0f0;
-    text-align: center;
-}
+    ul {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .header {
+        background-color: #f0f0f0;
+        text-align: center;
+    }
+
+    .slider-holder {
+        width: 100%;
+        height: auto;
+        margin: 50px auto 20px auto;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .image-holder {
+        width: 200%;
+        height: auto;
+        clear: both;
+        position: relative;
+        
+        -webkit-transition: left 2s;
+        -moz-transition: left 2s;
+        -o-transition: left 2s;
+        transition: left 2s;
+    }
+    
+    .slider {
+        float: left;
+        padding: 0px;
+        position: relative;
+        width: 50%;
+    }
+
+    .slider .slider-image {
+        max-width: 500px;
+        width: 70%;
+    }
+
+    .caption {
+        margin: 0px 0px 30px 0px;
+        position: relative;
+        width: 70%;
+        left: 15%;
+    }
+    
+    #slider-image-1:target ~ .image-holder {
+        left: 0px;
+    }
+    
+    #slider-image-2:target ~ .image-holder {
+        left: -100%;
+    }
+
+    .like-holder {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    img.like-btn {
+        height: 20px;
+        width: auto;
+        position: relative;
+    }
+
+    img.like-btn:hover {
+        cursor: pointer;
+    }
+    
+    .button-holder {
+        position: absolute;
+        height: 15px;
+        bottom: 0px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .slider-change {
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+        background-color: black;
+    }
+
+    #email-form {
+        width: 100%;
+        position: relative;
+        text-align: center;
+        margin: 20px 0px;
+    }
+
+    #footer {
+        margin-top: 100px;
+        padding-top: 10px;
+        width: 100%;
+        text-align: center;
+        background-color: #fff;
+        position: absolute;
+    }
+
+    #footer ul li {
+        display: inline-block;
+        margin: 10px;
+    }
+
+    @media (max-width: 531px) {
+        .slider .slider-image {
+            width: 90%;
+        }
+        .caption {
+            width: 90%;
+            left: 5%;
+        }
+    }
 </style>
 </head>
 <body>
+    <script type="text/javascript">
+        // PHASE 4 - A/B Testing
+        var group = Math.random() < 0.5 ? "control" : "variation";
+        var body = document.getElementsByTagName('body');
+        console.log(group);
+        if (group === "control") {
+            body[0].style.backgroundColor = "#FFFFF0";
+        } else if (group === "variation") {
+            body[0].style.backgroundColor = "orange";
+        }
+    </script>
+    <div class="container">
+        <div class="header col-xs-12">
+            Header Bar
+        </div>
+        <div class="slider-holder">
+            <span id="slider-image-1"></span>
+            <span id="slider-image-2"></span>
+            <div class="image-holder">
+                <div class="slider">
+                    <img class="slider-image" id="image-1" src="https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg"  />
+                    <div class="like-holder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Facebook_like_thumb.png/897px-Facebook_like_thumb.png" class="like-btn" />
+                        <span class="counter"></span>
+                    </div>
+                    <div class="caption" id="image-1-caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. </p>
+                    </div>
+                </div>
 
-    <script>
-        sleep(7000);
-        //alert("hoho");
-    </script>
-    <script language="javascript" type="text/javascript">
-        var d = new Date();
-        document.getElementById("image-2").src =
-          "https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg?ver=" +
-           d.getTime();
-    </script>
-    <div class="header">
-        Header Bar
+                <div class="slider">
+                    <img class="slider-image" id="image-2" src="https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg"  />
+                    <div class="like-holder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Facebook_like_thumb.png/897px-Facebook_like_thumb.png" class="like-btn" />
+                        <span class="counter"></span>
+                    </div>
+                    <div class="caption" id="image-2-caption">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="button-holder">
+                <a href="#slider-image-1" class="slider-change"></a>
+                <a href="#slider-image-2" class="slider-change"></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="col-xs-12 col-sm-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna. In auctor, ex quis rutrum iaculis, velit urna gravida ante, nec tristique mi mi eget ex. Ut eu nisl in augue dapibus consequat. Aenean faucibus blandit metus et volutpat. Sed nec dolor auctor, venenatis velit id, rhoncus ipsum. Proin congue, magna a viverra maximus, felis nisl efficitur ipsum, sit amet bibendum mauris mi sed diam.
+            </p>
+
+            <p class="col-xs-12 col-sm-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna.
+            </p>
+        </div>
+        <div class="row">
+            <p class="col-xs-12 col-sm-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna. In auctor, ex quis rutrum iaculis, velit urna gravida ante, nec tristique mi mi eget ex. Ut eu nisl in augue dapibus consequat. Aenean faucibus blandit metus et volutpat. Sed nec dolor auctor, venenatis velit id, rhoncus ipsum. Proin congue, magna a viverra maximus, felis nisl efficitur ipsum, sit amet bibendum mauris mi sed diam.
+            </p>
+            <p class="col-xs-12 col-sm-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna.
+            </p>
+        </div>
+        <div class="row">
+            <p class="col-xs-12 col-sm-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna. In auctor, ex quis rutrum iaculis, velit urna gravida ante, nec tristique mi mi eget ex. Ut eu nisl in augue dapibus consequat. Aenean faucibus blandit metus et volutpat. Sed nec dolor auctor, venenatis velit id, rhoncus ipsum. Proin congue, magna a viverra maximus, felis nisl efficitur ipsum, sit amet bibendum mauris mi sed diam.
+            </p>
+        </div>
     </div>
-    <div>
-        <img id="image-1" src="https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg">
-    </div>
-    <div id="image-1-caption">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. </p>
-    </div>
-    <div>
-        <img id="image-2" src="https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg">
-    </div>
-    <div id="image-2-caption">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna. In auctor, ex quis rutrum iaculis, velit urna gravida ante, nec tristique mi mi eget ex. Ut eu nisl in augue dapibus consequat. Aenean faucibus blandit metus et volutpat. Sed nec dolor auctor, venenatis velit id, rhoncus ipsum. Proin congue, magna a viverra maximus, felis nisl efficitur ipsum, sit amet bibendum mauris mi sed diam.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna. In auctor, ex quis rutrum iaculis, velit urna gravida ante, nec tristique mi mi eget ex. Ut eu nisl in augue dapibus consequat. Aenean faucibus blandit metus et volutpat. Sed nec dolor auctor, venenatis velit id, rhoncus ipsum. Proin congue, magna a viverra maximus, felis nisl efficitur ipsum, sit amet bibendum mauris mi sed diam.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna.
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ullamcorper ante. Quisque sit amet mauris facilisis, placerat nisl finibus, euismod felis. Fusce tristique felis augue, quis ultricies augue iaculis vel. Ut volutpat orci a mauris rutrum consectetur. Curabitur consequat, dui sed tincidunt scelerisque, augue tortor vehicula turpis, porttitor viverra nulla arcu gravida magna. In auctor, ex quis rutrum iaculis, velit urna gravida ante, nec tristique mi mi eget ex. Ut eu nisl in augue dapibus consequat. Aenean faucibus blandit metus et volutpat. Sed nec dolor auctor, venenatis velit id, rhoncus ipsum. Proin congue, magna a viverra maximus, felis nisl efficitur ipsum, sit amet bibendum mauris mi sed diam.
-    </p>
-    <form>
-    <input name="email" type="text">
-    <input type="submit">
+
+    <form class="col-xs-12" id="email-form">
+        <input id="email" name="email" type="text" placeholder="email address">
+        <input type="submit">
     </form>
+
     <div id="footer">
         <span>CompanyName</span>
         <ul>
@@ -85,10 +215,80 @@
         </ul>
     </div>
     <script language="javascript" type="text/javascript">
-        var d = new Date();
-        document.getElementById("image-1").src =
-          "https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg?ver=" +
-           d.getTime();
+        // PHASE 1
+        var image1 = document.getElementById("image-1");
+        var image2 = document.getElementById("image-2");
+
+        var imgLoad = function() {
+            var d = new Date();
+            this.src = "https://s-media-cache-ak0.pinimg.com/736x/4b/fe/44/4bfe443c1db09c0943de27164783e4fc.jpg?ver=" + d.getTime();
+        }
+
+        if(image1.complete) {
+            imgLoad.call(image1);
+        }
+
+        if(image2.complete) {
+            imgLoad.call(image2);
+        }
+    </script>
+    <script language="javascript" type="text/javascript">
+        // PHASE 3 - Like Button
+        var slideInfo = {};
+        var likeBtn = document.getElementsByClassName('like-btn');
+        // getElementsByClassName doesn't return an array, so you must use the forEach method as an array prototype
+        Array.prototype.forEach.call(likeBtn, function(el, i) {
+            // Capture the image index
+            function index() { return i; };
+            // Add even listeners to the like image
+            el.addEventListener("click", function() {
+                var ind = index();
+                if( !slideInfo[ind] ) {
+                    slideInfo[ind] = 1;
+                } else {
+                    slideInfo[ind]++;
+                }
+                // Using createTextNode prevent potential XSS vulnerabilities
+                var spanEl = this.nextSibling.nextSibling;
+                var counterText = document.createTextNode(slideInfo[ind]);
+                spanEl.innerText = counterText.textContent;
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        // PHASE 5 - Submit Email Form
+        document.addEventListener("DOMContentLoaded", function() {
+            var emailForm = document.getElementById('email-form');
+
+            // Use Regex to confirm valide email format
+            function validateEmail() {
+                var email = document.getElementById('email').value;
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+            // Store valid email submissions
+            var emailList = {};
+
+            emailForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                var inputValue = this.childNodes[0].nextElementSibling.value;
+
+                if ( !validateEmail() ) {
+                    alert('Email is not valid. Please try again.');
+                } 
+                else if ( emailList[inputValue] === true ) {
+                    alert('You have already signed up with that email.');
+                } 
+                else {
+                    emailList[inputValue] = true;
+                    alert('Thank you for signing up!');
+                    // UN-COMMENT the script below to remove the element after a successful submission.
+                    // this.remove();
+                }
+                // Clear the input value 
+                e.target.childNodes[0].nextElementSibling.value = "";
+            });
+        });
     </script>
 
 </body>

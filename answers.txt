@@ -1,0 +1,19 @@
+1. What is the difference between these two images?
+	- image-2 has a script adding a date query to the end of the #image-2 source before the body is even loaded. So this script is useless and does nothing because the element doesn’t exists at the time of the script.
+
+	- image-1 has a script adding a date query to the end of the #image-1 source after the body is loaded. So this script will be able to target the element and change the image source. However, image-1 will be loaded after image-2 since the script exists post body.
+
+2. What are the implications for how these images load?
+	- It shows how the DOM is loaded and provides a way to manipulate the image loading times in various ways.
+
+3. What can be done to make these images load correctly with a version number?
+	- Rather than having two separate scripts with the same function, we can make it more convenient by creating a single function that adds the date query at the src url and target the individual id’s using “this.”. At the end of the body, we can target both image elements and use the “.complete” method to see when the image is completely loaded and run the function to add the date query at the time each image is loaded. 
+
+4. Does where you load the CSS matter?  Please explain.
+	- Yes. If you load it prior to the body, the elements within the body will load with the set styles. However, if you load the styling after the body, it will cause the elements to flicker and load the updated styling after the default.
+
+
+Notes: 
+- I decided to leave the image src alone so that the page will load the images quickly. This way the image will load quickly and the image source will be updated shortly after the default image source has been loaded. 
+
+- I removed the sleep script because it kept causing the page to take 2000+ milliseconds to load. Without it, the page loads instantly.
