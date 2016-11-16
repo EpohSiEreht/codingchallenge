@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Welcome to a Webpage</title>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style media="screen" type="text/css">
@@ -240,7 +242,7 @@
         Array.prototype.forEach.call(likeBtn, function(el, i) {
             // Capture the image index
             function index() { return i; };
-            // Add even listeners to the like image
+            // Add event listeners to the like image
             el.addEventListener("click", function() {
                 var ind = index();
                 if( !slideInfo[ind] ) {
@@ -248,7 +250,7 @@
                 } else {
                     slideInfo[ind]++;
                 }
-                // Using createTextNode prevent potential XSS vulnerabilities
+                // Using createTextNode prevents potential XSS vulnerabilities
                 var spanEl = this.nextSibling.nextSibling;
                 var counterText = document.createTextNode(slideInfo[ind]);
                 spanEl.innerText = counterText.textContent;
