@@ -273,22 +273,22 @@
 
             emailForm.addEventListener("submit", function(e) {
                 e.preventDefault();
-                var inputValue = this.childNodes[0].nextElementSibling.value;
+                var input = this.childNodes[0].nextElementSibling;
 
                 if ( !validateEmail() ) {
                     alert('Email is not valid. Please try again.');
                 } 
-                else if ( emailList[inputValue] === true ) {
+                else if ( emailList[input.value] === true ) {
                     alert('You have already signed up with that email.');
                 } 
                 else {
-                    emailList[inputValue] = true;
+                    emailList[input.value] = true;
                     alert('Thank you for signing up!');
                     // UN-COMMENT the script below to remove the element after a successful submission.
                     // this.remove();
                 }
                 // Clear the input value 
-                e.target.childNodes[0].nextElementSibling.value = "";
+                input.value = "";
             });
         });
     </script>
