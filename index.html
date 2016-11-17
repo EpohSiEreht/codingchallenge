@@ -251,7 +251,7 @@
                     slideInfo[ind]++;
                 }
                 // Using createTextNode prevents potential XSS vulnerabilities
-                var spanEl = this.nextSibling.nextSibling;
+                var spanEl = this.nextElementSibling;
                 var counterText = document.createTextNode(slideInfo[ind]);
                 spanEl.innerText = counterText.textContent;
             });
